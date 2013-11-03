@@ -14,7 +14,7 @@ class MultiCastServiceTest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_dummy(self):
+    def test_api_valid_single_recipient(self):
         data = {"message": "SendHub Rocks", "recipients": ["201-706-1186"]}
         response = self.app.post(path='/api/sendhub/v1.0/routes',
                                  data=json.dumps(data), content_type="application/json")
