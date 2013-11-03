@@ -13,7 +13,8 @@ sendhub_schema = {
             "type": "array",
             "minItems": 1,
             "items": {
-                "type": "string"
+                "type": "string",
+                "pattern": "^\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
             },
             "uniqueItems": True
         }
