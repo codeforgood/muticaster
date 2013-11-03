@@ -19,6 +19,11 @@ def not_found(error):
     return make_response(jsonify({'error': 'Bad Request'}), 400)
 
 
+@app.errorhandler(500)
+def not_found(error):
+    return make_response(jsonify({'error': 'Internal Server Error'}), 500)
+
+
 @app.route('/api/sendhub/v1.0/routes', methods=['POST'])
 def multi_cast():
     data = request.json
