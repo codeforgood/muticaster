@@ -30,12 +30,13 @@ def get_recipients_assigned_for_routing(routing_table, recipients):
     routes = []
     start = 0
     for i in range(len(relay_types)):
-        hosts_needed = routing_table[relay_types[i]]
-        if hosts_needed > 0:
-            for j in range(hosts_needed):
-                host_ip = get_host_ip_of_type(relay_types[i], j+1)
-                end = start + relays_dict[relay_types[i]]["throughput"]
-                route = {'ip': host_ip, 'recipients': recipients[start: end]}
-                start = end
-                routes.append(route)
+        if relay_types[i] in routing_table:
+            hosts_needed = routing_table[relay_types[i]]
+            if hosts_needed > 0:
+                for j in range(hosts_needed):
+                    host_ip = get_host_ip_of_type(relay_types[i], j+1)
+                    end = start + relays_dict[relay_types[i]]["throughput"]
+                    route = {'ip': host_ip, 'recipients': recipients[start: end]}
+                    start = end
+                    routes.append(route)
     return routes
